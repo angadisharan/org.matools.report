@@ -8,7 +8,7 @@
 
 	<groupId>org.matools.report</groupId>
 	<artifactId>report-lib</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<packaging>jar</packaging>
 
 	<!-- ✅ Project Info -->
@@ -19,8 +19,8 @@
 	<!-- ✅ License -->
 	<licenses>
 		<license>
-			<name>MIT License</name>
-			<url>https://opensource.org/licenses/MIT</url>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
 
