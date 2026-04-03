@@ -19,7 +19,11 @@ public class PdfGenerator {
 
             document.add(new Paragraph("INVOICE"));
             document.add(new Paragraph("Invoice No: " + invoice.getInvoiceNumber()));
-            document.add(new Paragraph("Customer: " + invoice.getCustomerName()));
+
+            if (invoice.getCustomer() != null) {
+                document.add(new Paragraph("Customer: " + invoice.getCustomer().getName()));
+            }
+
             document.add(new Paragraph(" "));
 
             PdfPTable table = new PdfPTable(4);
@@ -32,7 +36,7 @@ public class PdfGenerator {
                 invoice.getItems().forEach(item -> {
                     table.addCell(item.getName());
                     table.addCell(String.valueOf(item.getQuantity()));
-                    table.addCell(String.valueOf(item.getPrice()));
+                    table.addCell(String.valueOf(item.getUnitPrice()));
                     table.addCell(String.valueOf(item.getTotal()));
                 });
             }

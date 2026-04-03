@@ -1,65 +1,98 @@
 package org.matools.report.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 public class Invoice {
 
-    private String invoiceNumber;
-    private LocalDate date;
-    private String customerName;
-    private String customerEmail;
-    private List<InvoiceItem> items;
-    private double totalAmount;
+    private final String invoiceNumber;
+    private final LocalDate date;
+    private final Party customer;
+    private final Party seller;
+    private final List<InvoiceItem> items;
+    private final BigDecimal totalAmount;
+    private final String currency;
 
-    private Invoice() {}
+    private Invoice(Builder builder) {
+        this.invoiceNumber = builder.invoiceNumber;
+        this.date = builder.date;
+        this.customer = builder.customer;
+        this.seller = builder.seller;
+        this.items = builder.items;
+        this.totalAmount = builder.totalAmount;
+        this.currency = builder.currency;
+    }
 
     public String getInvoiceNumber() { return invoiceNumber; }
     public LocalDate getDate() { return date; }
-    public String getCustomerName() { return customerName; }
-    public String getCustomerEmail() { return customerEmail; }
+    public Party getCustomer() { return customer; }
+    public Party getSeller() { return seller; }
     public List<InvoiceItem> getItems() { return items; }
-    public double getTotalAmount() { return totalAmount; }
+    public BigDecimal getTotalAmount() { return totalAmount; }
+    public String getCurrency() { return currency; }
 
     public static Builder builder() {
         return new Builder();
     }
 
     public static class Builder {
-        private final Invoice invoice = new Invoice();
+        private String invoiceNumber;
+        private LocalDate date;
+        private Party customer;
+        private Party seller;
+        private List<InvoiceItem> items = Collections.emptyList();
+        private BigDecimal totalAmount = BigDecimal.ZERO;
+        private String currency = "INR";
 
         public Builder invoiceNumber(String invoiceNumber) {
-            invoice.invoiceNumber = invoiceNumber;
+            this.invoiceNumber = invoiceNumber;
             return this;
         }
 
         public Builder date(LocalDate date) {
-            invoice.date = date;
+            this.date = date;
             return this;
         }
 
-        public Builder customerName(String name) {
-            invoice.customerName = name;
+        public Builder customer(Party customer) {
+            this.customer = customer;
             return this;
         }
 
-        public Builder customerEmail(String email) {
-            invoice.customerEmail = email;
+        public Builder seller(Party seller) {
+            this.seller = seller;
             return this;
         }
 
         public Builder items(List<InvoiceItem> items) {
-            invoice.items = items;
+            this.items = items;
             return this;
         }
 
-        public Builder totalAmount(double total) {
-            invoice.totalAmount = total;
+        public Builder totalAmount(BigDecimal totalAmount) {
+            this.totalAmount = totalAmount;
+            return this;
+        }
+
+        public Builder currency(String currency) {
+            this.currency = currency;
             return this;
         }
 
         public Invoice build() {
-            return invoice;
+            validate();
+            return new Invoice(this);
+        }
+
+        private void validate() {
+            if (invoiceNumber == null || invoiceNumber.isEmpty()) {
+                throw new IllegalArgumentException("Invoice number is required");
+            }
+            if (customer == null) {
+                throw new IllegalArgumentException("Customer is required");
+            }
         }
     }
 }

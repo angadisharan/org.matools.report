@@ -3,6 +3,8 @@ package org.matools.report;
 import org.junit.jupiter.api.Test;
 import org.matools.report.model.Invoice;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InvoiceTest {
@@ -12,8 +14,7 @@ class InvoiceTest {
 
         Invoice invoice = Invoice.builder()
                 .invoiceNumber("INV-001")
-                .customerName("Sharan")
-                .totalAmount(500)
+                .totalAmount(new BigDecimal(600))
                 .build();
 
         assertNotNull(invoice);

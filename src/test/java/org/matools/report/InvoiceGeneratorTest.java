@@ -6,6 +6,7 @@ import org.matools.report.model.Invoice;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -18,8 +19,7 @@ class InvoiceGeneratorTest {
 
         Invoice invoice = Invoice.builder()
                 .invoiceNumber("INV-001")
-                .customerName("Sharan")
-                .totalAmount(500)
+                .totalAmount(new BigDecimal(600))
                 .build();
 
         InvoicePdfGenerator generator = new InvoicePdfGenerator();
@@ -35,8 +35,7 @@ class InvoiceGeneratorTest {
 
         Invoice invoice = Invoice.builder()
                 .invoiceNumber("INV-001")
-                .customerName("Sharan")
-                .totalAmount(500)
+                .totalAmount(new BigDecimal(600))
                 .build();
 
         InvoicePdfGenerator generator = new InvoicePdfGenerator();
