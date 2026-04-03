@@ -6,9 +6,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.matools</groupId>
+	<groupId>org.matools.report</groupId>
 	<artifactId>report-lib</artifactId>
-	<version>1.0.0</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<properties>
