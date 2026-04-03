@@ -28,12 +28,14 @@ public class PdfGenerator {
             table.addCell("Price");
             table.addCell("Total");
 
-            invoice.getItems().forEach(item -> {
-                table.addCell(item.getName());
-                table.addCell(String.valueOf(item.getQuantity()));
-                table.addCell(String.valueOf(item.getPrice()));
-                table.addCell(String.valueOf(item.getTotal()));
-            });
+            if (invoice.getItems() != null) {
+                invoice.getItems().forEach(item -> {
+                    table.addCell(item.getName());
+                    table.addCell(String.valueOf(item.getQuantity()));
+                    table.addCell(String.valueOf(item.getPrice()));
+                    table.addCell(String.valueOf(item.getTotal()));
+                });
+            }
 
             document.add(table);
             document.add(new Paragraph("Total: " + invoice.getTotalAmount()));

@@ -24,14 +24,6 @@
 			<version>1.3.30</version>
 		</dependency>
 
-		<!-- Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.32</version>
-			<optional>true</optional>
-		</dependency>
-
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
@@ -40,5 +32,4 @@
 		</dependency>
 
 	</dependencies>
-
 </project>
